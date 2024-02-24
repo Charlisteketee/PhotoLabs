@@ -20,14 +20,7 @@ const App = () => {
   
   return (
     <div className="App">
-      <PhotoListItem
-        key={sampleDataForPhotoListItem.id}
-        id={sampleDataForPhotoListItem.id}
-        location={sampleDataForPhotoListItem.location}
-        imageSource={sampleDataForPhotoListItem.imageSource}
-        username={sampleDataForPhotoListItem.username}
-        profile={sampleDataForPhotoListItem.profile}
-      />
+      <PhotoListItem key={sampleDataForPhotoListItem.id} photo={sampleDataForPhotoListItem} />
     </div>
   );
 };
