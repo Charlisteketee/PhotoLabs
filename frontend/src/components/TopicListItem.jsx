@@ -4,10 +4,10 @@ import "../styles/TopicListItem.scss";
 
 
 
-const TopicListItem = (props) => {
+const TopicListItem = ( {topic}) => {
   return (
     <div className="topic-list__item">
-      <p>{props.topic.title}</p>
+      <p>{topic.title}</p>
     </div>
   );
 };
