@@ -25,7 +25,7 @@ const App = () => {
     <div className="App">
       {/* Use .map() to iterate over the array and render PhotoListItem 3 times */}
       {photos.map((_, index) => (
-      <PhotoListItem className=".photo-list" key={sampleDataForPhotoListItem.id} photo={sampleDataForPhotoListItem} />
+      <PhotoListItem className=".photo-list" key={index} photo={sampleDataForPhotoListItem} />
       ))}
     </div>
   );

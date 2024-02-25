@@ -3,11 +3,20 @@ import React, { useCallback, useState } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton() {
+
+function PhotoFavButton(props) {
+  // state to track if the heart icon is selected
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleClick = () => {
+    setIsSelected(!isSelected);
+  }
+  
   return (
-    <div className="photo-list__fav-icon">
+    <div className="photo-list__fav-icon" onClick={handleClick}>
       <div className="photo-list__fav-icon-svg">
-        {/* Insert React */}
+        {/* pass isSelected state to FavIcon component */}
+        <FavIcon selected={isSelected} />
       </div>
     </div>
   );
