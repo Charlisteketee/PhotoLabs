@@ -2,15 +2,14 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
-import photos from "mocks/photos";
 
 
 
-const PhotoList = () => {
+const PhotoList = (props) => {
   return (
     <ul className="photo-list">
       {/* Map over mock photos and render PhotoList components */}
-      {photos.map(photo => (
+      {props.photos.map(photo => (
         <PhotoListItem key={photo.id} photo={photo} />
       ))}
     </ul>
