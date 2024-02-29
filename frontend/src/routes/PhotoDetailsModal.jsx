@@ -3,6 +3,7 @@ import React from 'react';
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = ({
   closeModal,
@@ -10,6 +11,7 @@ const PhotoDetailsModal = ({
   similarPhotos,
   toggleFavourite,
   favouritePhotosCount,
+  favouritePhotos,
 }) => {
 
   // Convert similar_photos object to an array
@@ -37,7 +39,9 @@ const similarPhotosArray = Object.values(similarPhotos);
           photos={similarPhotosArray}
           toggleFavourite={toggleFavourite}
           favouritePhotosCount={favouritePhotosCount}
+          favouritePhotos={favouritePhotos}
         />
+        
       </div>
     </div>
   )

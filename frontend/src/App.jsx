@@ -19,23 +19,22 @@ const App = () => {
     setIsModalOpen(!isModalOpen);
   };
 
- const handlePhotoClick = (photo) => {
+  const handlePhotoClick = (photo) => {
     setSelectedPhoto(photo); // Update the selected photo state with the clicked photo
     setSimilarPhotos(photo.similar_photos); // Set similar photos to display in modal
     toggleModal(); // Open the modal
- };
+  };
 
-   // Function to toggle favorite status of a photo
-   const toggleFavourite = (photoId) => {
-     if (favouritePhotos.includes(photoId)) {
-       setFavouritePhotos(favouritePhotos.filter(id => id !== photoId));
-     } else {
-       setFavouritePhotos([...favouritePhotos, photoId]);
-     }
-   };
- 
-   // Calculate the count of favorited photos
-   const favouritePhotosCount = favouritePhotos.length;
+  // Function to toggle favorite status of a photo
+  const toggleFavourite = (photoId) => {
+    if (favouritePhotos.includes(photoId)) {
+      setFavouritePhotos(favouritePhotos.filter(id => id !== photoId));
+    } else {
+      setFavouritePhotos([...favouritePhotos, photoId]);
+    }
+  };
+  // Calculate the count of favorited photos
+  const favouritePhotosCount = favouritePhotos.length;
 
  return (
     <div className="App">
@@ -46,6 +45,7 @@ const App = () => {
         onPhotoClick={handlePhotoClick}
         toggleFavourite={toggleFavourite}
         favouritePhotosCount={favouritePhotosCount}
+        favouritePhotos={favouritePhotos}
       />
       {isModalOpen && <PhotoDetailsModal
         closeModal={toggleModal}
@@ -53,6 +53,7 @@ const App = () => {
         similarPhotos={similarPhotos}
         toggleFavourite={toggleFavourite}
         favouritePhotosCount={favouritePhotosCount}
+        favouritePhotos={favouritePhotos}
       />}
     </div>
  );
