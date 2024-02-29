@@ -1,6 +1,6 @@
 .photo-list__item {
   margin: 24px;
-  padding: 8px;
+  padding: 16px;
   border-width: 0.5px;
   border-color: lightgray;
   border-style: solid;
@@ -13,6 +13,8 @@
   width: 300px;
   height: 200px;
   object-fit: cover;
+  justify-content: center;
+  align-items: center;
 }
 
 .photo-list__image {
@@ -21,6 +23,7 @@
   width: 300px;
   height: 200px;
   object-fit: cover;
+  
 }
 
 .photo-list__user-profile {
@@ -34,6 +37,7 @@
 
 .photo-list__user-details {
   display: flex;
+  flex-direction: column;
 }
 
 .photo-list__user-info {
