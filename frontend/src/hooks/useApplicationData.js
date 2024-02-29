@@ -7,7 +7,7 @@ const initialState = {
  selectedPhoto: null,
  similarPhotos: [],
  favouritePhotos: [],
- favouritePhotosCount: 0,
+//  favouritePhotosCount: 0,
 };
 
 // Define the actions
@@ -26,13 +26,13 @@ function reducer(state, action) {
       return {
         ...state,
         favouritePhotos: [...state.favouritePhotos, action.payload.id],
-        favouritePhotosCount: state.favouritePhotosCount + 1,
+        // favouritePhotosCount: state.favouritePhotosCount + 1,
       };
     case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
         favouritePhotos: state.favouritePhotos.filter(id => id !== action.payload.id),
-        favouritePhotosCount: state.favouritePhotosCount - 1,
+        // favouritePhotosCount: state.favouritePhotosCount - 1,
       };
     case ACTIONS.SET_PHOTO_DATA:
       return {
@@ -81,8 +81,13 @@ const useApplicationData = () => {
     }
  };
 
- return {
-    state,
+// dynamically calculate favouritePhotosCount
+const favouritePhotosCount = state.favouritePhotos.length;
+
+  return {
+    state: {
+      favouritePhotosCount,
+    },
     actions: {
       toggleModal,
       handlePhotoClick,
