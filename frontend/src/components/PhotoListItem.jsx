@@ -2,10 +2,10 @@ import React from "react";
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({ photo, toggleFavourite, favouritePhotos }) => {
+const PhotoListItem = ({ photo, toggleFavourite, favouritePhotos, toggleModal }) => {
   return (
-    <div className="photo-list__item">
-<PhotoFavButton photoId={photo.id} favouritePhotos={favouritePhotos} toggleFavourite={toggleFavourite} />
+    <div className="photo-list__item" onClick={toggleModal}>
+      <PhotoFavButton photoId={photo.id} favouritePhotos={favouritePhotos} toggleFavourite={toggleFavourite} />
       <img src={photo.urls.regular} alt={`Photo id: ${photo.id}`} className="photo-list__image"/>
       <div>
         <div className="photo-list__user-details">
