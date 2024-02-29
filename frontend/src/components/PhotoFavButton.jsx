@@ -1,22 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ toggleFavourite }) {
- // state to track if the heart icon is selected
- const [isSelected, setIsSelected] = useState(false);
+function PhotoFavButton({ photoId, favouritePhotos, toggleFavourite }) {
+ // Determine if the photo is favorited by checking if its ID exists in the favorites array
+ console.log(`PhotoFavButton props:`, { photoId, favouritePhotos, toggleFavourite });
+
+ const isSelected = favouritePhotos.includes(photoId);
 
  const handleClick = useCallback(() => {
-    // Toggle the heart icon's selected state
-    setIsSelected(prevIsSelected => !prevIsSelected);
     // Call the toggleFavourite function passed as a prop
-    toggleFavourite();
- }, [toggleFavourite]);
+    toggleFavourite(photoId);
+ }, [toggleFavourite, photoId]);
 
  return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
       <div className="photo-list__fav-icon-svg">
-        {/* pass isSelected state to FavIcon component */}
+        {/* Pass the isSelected state to FavIcon component */}
         <FavIcon selected={isSelected} />
       </div>
     </div>
