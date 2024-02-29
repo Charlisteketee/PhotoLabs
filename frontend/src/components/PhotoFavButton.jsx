@@ -2,10 +2,7 @@ import React, { useCallback } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ photoId, favouritePhotos, toggleFavourite }) {
- // Determine if the photo is favorited by checking if its ID exists in the favorites array
- console.log(`PhotoFavButton props:`, { photoId, favouritePhotos, toggleFavourite });
-
+function PhotoFavButton({ photoId, favouritePhotos = [], toggleFavourite }) {
  const isSelected = favouritePhotos.includes(photoId);
 
  const handleClick = useCallback(() => {

@@ -4,6 +4,7 @@ import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = ({ photo, toggleFavourite, favouritePhotos, toggleModal, onPhotoClick }) => {
   const handlePhotoClick = () => {
+    console.log("PhotoListItem handlephotoclick photo:", photo)
     toggleModal(); // Open the modal
     onPhotoClick(photo); // Pass the photo details to the parent component
  };

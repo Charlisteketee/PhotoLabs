@@ -5,8 +5,10 @@ import PhotoListItem from "./PhotoListItem";
 
 
 
-const PhotoList = ({ photos, toggleFavourite, favouritePhotos, toggleModal, onPhotoClick }) => {
-  return (
+const PhotoList = ({ photos, toggleFavourite, favouritePhotos, toggleModal, onPhotoClick,  }) => {
+
+
+console.log("Photos:", photos);  return (
     <ul className="photo-list">
       {/* Map over mock photos and render PhotoList components */}
       {photos.map(photo => (
