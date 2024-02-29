@@ -13,7 +13,11 @@ const PhotoListItem = ({
   const handlePhotoClick = () => {
     // console.log("toggleModal function:", toggleModal); // Debugging line
 
-    // console.log("PhotoListItem handlephotoclick photo:", photo)
+    // console.log("Before calling toggleModal:", toggleModal);
+    // toggleModal();
+    // console.log("After calling toggleModal:", toggleModal);
+    // onPhotoClick(photo);
+    
     toggleModal(); // Open the modal
     onPhotoClick(photo); // Pass the photo details to the parent component
  };

@@ -7,7 +7,6 @@ import topics from 'mocks/topics';
 import useApplicationData from 'hooks/useApplicationData';
 
 
-
 const App = () => {
   const {
     state: {

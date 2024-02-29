@@ -1,48 +1,94 @@
-import { useState } from "react";
+// hooks/useApplicationData.js
+import { useReducer } from 'react';
 
+// Define the initial state
+const initialState = {
+ isModalOpen: false,
+ selectedPhoto: null,
+ similarPhotos: [],
+ favouritePhotos: [],
+ favouritePhotosCount: 0,
+};
+
+// Define the actions
+export const ACTIONS = {
+ FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
+ FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+ SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+ SELECT_PHOTO: 'SELECT_PHOTO',
+ DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+};
+
+// Implement the reducer function
+function reducer(state, action) {
+ switch (action.type) {
+    case ACTIONS.FAV_PHOTO_ADDED:
+      return {
+        ...state,
+        favouritePhotos: [...state.favouritePhotos, action.payload.id],
+        favouritePhotosCount: state.favouritePhotosCount + 1,
+      };
+    case ACTIONS.FAV_PHOTO_REMOVED:
+      return {
+        ...state,
+        favouritePhotos: state.favouritePhotos.filter(id => id !== action.payload.id),
+        favouritePhotosCount: state.favouritePhotosCount - 1,
+      };
+    case ACTIONS.SET_PHOTO_DATA:
+      return {
+        ...state,
+        selectedPhoto: action.payload.photo,
+        similarPhotos: action.payload.photo.similar_photos,
+      };
+    case ACTIONS.SELECT_PHOTO:
+      return {
+        ...state,
+        selectedPhoto: action.payload.photo,
+        similarPhotos: action.payload.photo.similar_photos,
+      };
+    case ACTIONS.DISPLAY_PHOTO_DETAILS:
+      return {
+        ...state,
+        isModalOpen: true,
+      };
+    case ACTIONS.CLOSE_MODAL:
+      return {
+         ...state,
+         isModalOpen: false,
+      };
+    default:
+      throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
+ }
+}
+
+// Implement the useApplicationData hook
 const useApplicationData = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // state to manage the visibility of the modal
-  const [selectedPhoto, setSelectedPhoto] = useState(null); // State to hold the selected photo
-  const [similarPhotos, setSimilarPhotos] = useState([]); // state to hold similar photos related to the selected photo
-  const [favouritePhotos, setFavouritePhotos] = useState([]); // State to track favorited photos
+ const [state, dispatch] = useReducer(reducer, initialState);
 
+ const toggleModal = () => {
+  dispatch({ type: state.isModalOpen ? ACTIONS.CLOSE_MODAL : ACTIONS.DISPLAY_PHOTO_DETAILS });
+ };
 
-  // function to toggle visibility of the modal, toggling the state between true and false
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+ const handlePhotoClick = (photo) => {
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo } });
+ };
 
-  const handlePhotoClick = (photo) => {
-    setSelectedPhoto(photo); // Update the selected photo state with the clicked photo
-    setSimilarPhotos(photo.similar_photos); // Set similar photos to display in modal
-    toggleModal(); // Open the modal
-  };
-
-  // Function to toggle favorite status of a photo
-  const toggleFavourite = (photoId) => {
-    if (favouritePhotos.includes(photoId)) {
-      setFavouritePhotos(favouritePhotos.filter(id => id !== photoId));
+ const toggleFavourite = (photoId) => {
+    if (state.favouritePhotos.includes(photoId)) {
+      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id: photoId } });
     } else {
-      setFavouritePhotos([...favouritePhotos, photoId]);
+      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { id: photoId } });
     }
-  };
-  // Calculate the count of favorited photos
-  const favouritePhotosCount = favouritePhotos.length;
+ };
 
-  return {
-    state: {
-      isModalOpen,
-      selectedPhoto,
-      similarPhotos,
-      favouritePhotos,
-      favouritePhotosCount
-    },
+ return {
+    state,
     actions: {
       toggleModal,
       handlePhotoClick,
-      toggleFavourite
-    }
-  }
+      toggleFavourite,
+    },
+ };
 };
 
 export default useApplicationData;
