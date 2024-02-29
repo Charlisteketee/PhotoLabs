@@ -3,10 +3,13 @@ import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
-const FavBadge = ({ isFavPhotoExist }) => {
+const FavBadge = ({ count }) => {
   return (
     <div className='fav-badge'>
-      <FavIcon displayAlert={!!isFavPhotoExist}/>
+      {/* Render the FavIcon component and pass the count prop */}
+      <FavIcon count={count} selected={true} />
+      {/* Conditionally render the count if it's greater than 0 */}
+      {count > 0 && <span className='fav-badge__count'>{count}</span>}
     </div>
   ) 
 };

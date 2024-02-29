@@ -5,12 +5,12 @@ import PhotoListItem from "./PhotoListItem";
 
 
 
-const PhotoList = (props) => {
+const PhotoList = ({ photos, toggleFavourite }) => {
   return (
     <ul className="photo-list">
       {/* Map over mock photos and render PhotoList components */}
-      {props.photos.map(photo => (
-        <PhotoListItem key={photo.id} photo={photo} />
+      {photos.map(photo => (
+        <PhotoListItem key={photo.id} photo={photo} toggleFavourite={toggleFavourite}/>
       ))}
     </ul>
   );
