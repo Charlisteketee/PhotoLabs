@@ -16,8 +16,13 @@ const HomeRoute = ({ topics, photos, toggleModal}) => {
       setFavouritePhotos([...favouritePhotos, photoId]);
     }
     console.log(`New favouritePhotos state: ${favouritePhotos}`);
-
   };
+
+   // Function to handle photo click
+ const onPhotoClick = (photo) => {
+  console.log(photo); // Print the photo details
+  // add logic later
+};
 
   // Calculate the count of favorited photos
   const favouritePhotosCount = favouritePhotos.length;
@@ -25,7 +30,7 @@ const HomeRoute = ({ topics, photos, toggleModal}) => {
   return (
     <div className="home-route">
       <TopNavigation topics={topics} favouritePhotosCount={favouritePhotosCount} />
-      <PhotoList photos={photos} toggleFavourite={toggleFavourite} favouritePhotos={favouritePhotos} toggleModal={toggleModal}/>
+      <PhotoList photos={photos} toggleFavourite={toggleFavourite} favouritePhotos={favouritePhotos} toggleModal={toggleModal} onPhotoClick={onPhotoClick}/>
       {/* <button onClick={toggleModal}>Photo Details</button> */}
     </div>
   );
