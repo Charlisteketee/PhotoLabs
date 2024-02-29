@@ -31,7 +31,6 @@ const HomeRoute = ({ topics, photos, toggleModal}) => {
     <div className="home-route">
       <TopNavigation topics={topics} favouritePhotosCount={favouritePhotosCount} />
       <PhotoList photos={photos} toggleFavourite={toggleFavourite} favouritePhotos={favouritePhotos} toggleModal={toggleModal} onPhotoClick={onPhotoClick}/>
-      {/* <button onClick={toggleModal}>Photo Details</button> */}
     </div>
   );
 };
