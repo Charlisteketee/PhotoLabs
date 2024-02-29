@@ -2,7 +2,12 @@ import React, { useCallback } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ photoId, favouritePhotos = [], toggleFavourite }) {
+function PhotoFavButton({
+  photoId,
+  favouritePhotos = [],
+  toggleFavourite
+}) {
+  
  const isSelected = favouritePhotos.includes(photoId);
 
  const handleClick = useCallback(() => {
