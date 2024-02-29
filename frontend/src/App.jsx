@@ -17,7 +17,9 @@ const App = () => {
       favouritePhotosCount,
     },
     actions: {
-      toggleModal, // used to open and close the modal
+      // toggleModal, // used to open and close the modal
+      openModal,
+      closeModal,
       handlePhotoClick, // used when user selects a photo
       toggleFavourite, // sets the favourite photos
     },
@@ -29,14 +31,15 @@ const App = () => {
       <HomeRoute
         photos={photos}
         topics={topics}
-        toggleModal={toggleModal}
+        // toggleModal={toggleModal}
+        openModal={openModal}
         onPhotoClick={handlePhotoClick}
         toggleFavourite={toggleFavourite}
         favouritePhotosCount={favouritePhotosCount}
         favouritePhotos={favouritePhotos}
       />
       {isModalOpen && <PhotoDetailsModal
-        closeModal={toggleModal}
+        closeModal={closeModal}
         photo={selectedPhoto}
         similarPhotos={similarPhotos}
         toggleFavourite={toggleFavourite}

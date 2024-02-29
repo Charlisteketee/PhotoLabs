@@ -7,7 +7,8 @@ const PhotoList = ({
   photos,
   toggleFavourite,
   favouritePhotos,
-  toggleModal,
+  // toggleModal,
+  openModal,
   onPhotoClick,
 }) => {
 
@@ -20,7 +21,8 @@ return (
           photo={photo}
           toggleFavourite={toggleFavourite}
           favouritePhotos={favouritePhotos}
-          toggleModal={toggleModal}
+          // toggleModal={toggleModal}
+          openModal={openModal}
           onPhotoClick={onPhotoClick}
         />
       ))}

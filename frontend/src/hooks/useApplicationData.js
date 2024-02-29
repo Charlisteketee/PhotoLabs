@@ -17,6 +17,8 @@ export const ACTIONS = {
  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
  SELECT_PHOTO: 'SELECT_PHOTO',
  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+ OPEN_MODAL: 'OPEN_MODAL',
+ CLOSE_MODAL: 'CLOSE_MODAL',
 };
 
 // Implement the reducer function
@@ -51,11 +53,16 @@ function reducer(state, action) {
         ...state,
         isModalOpen: true,
       };
-    case ACTIONS.CLOSE_MODAL:
-      return {
-         ...state,
-         isModalOpen: false,
-      };
+      case ACTIONS.OPEN_MODAL:
+        return {
+          ...state,
+          isModalOpen: true,
+        };
+      case ACTIONS.CLOSE_MODAL:
+        return {
+          ...state,
+          isModalOpen: false,
+        };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
  }
@@ -63,17 +70,21 @@ function reducer(state, action) {
 
 // Implement the useApplicationData hook
 const useApplicationData = () => {
- const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
- const toggleModal = () => {
-  dispatch({ type: state.isModalOpen ? ACTIONS.CLOSE_MODAL : ACTIONS.DISPLAY_PHOTO_DETAILS });
+  const openModal = () => {
+    dispatch({ type: ACTIONS.OPEN_MODAL });
  };
 
- const handlePhotoClick = (photo) => {
+ const closeModal = () => {
+    dispatch({ type: ACTIONS.CLOSE_MODAL });
+ };
+
+  const handlePhotoClick = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo } });
- };
+  };
 
- const toggleFavourite = (photoId) => {
+  const toggleFavourite = (photoId) => {
     if (state.favouritePhotos.includes(photoId)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { id: photoId } });
     } else {
@@ -84,7 +95,8 @@ const useApplicationData = () => {
  return {
     state,
     actions: {
-      toggleModal,
+      openModal,
+      closeModal,
       handlePhotoClick,
       toggleFavourite,
     },

@@ -6,7 +6,8 @@ import '../styles/HomeRoute.scss';
 const HomeRoute = ({
   topics,
   photos,
-  toggleModal,
+  // toggleModal,
+  openModal,
   onPhotoClick,
   toggleFavourite,
   favouritePhotosCount,
@@ -23,7 +24,8 @@ const HomeRoute = ({
         photos={photos}
         toggleFavourite={toggleFavourite}
         favouritePhotos={favouritePhotos}
-        toggleModal={toggleModal}
+        // toggleModal={toggleModal}
+        openModal={openModal}
         onPhotoClick={onPhotoClick}
       />
     </div>

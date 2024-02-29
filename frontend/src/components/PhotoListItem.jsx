@@ -6,7 +6,8 @@ const PhotoListItem = ({
   photo,
   toggleFavourite,
   favouritePhotos,
-  toggleModal,
+  // toggleModal,
+  openModal,
   onPhotoClick 
 }) => {
   
@@ -17,8 +18,8 @@ const PhotoListItem = ({
     // toggleModal();
     // console.log("After calling toggleModal:", toggleModal);
     // onPhotoClick(photo);
-    
-    toggleModal(); // Open the modal
+
+    openModal(); // Open the modal
     onPhotoClick(photo); // Pass the photo details to the parent component
  };
   
