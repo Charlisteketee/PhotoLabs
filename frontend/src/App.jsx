@@ -31,7 +31,6 @@ const App = () => {
       <HomeRoute
         photos={photos}
         topics={topics}
-        // toggleModal={toggleModal}
         openModal={openModal}
         onPhotoClick={handlePhotoClick}
         toggleFavourite={toggleFavourite}

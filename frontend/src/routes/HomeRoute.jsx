@@ -6,7 +6,6 @@ import '../styles/HomeRoute.scss';
 const HomeRoute = ({
   topics,
   photos,
-  // toggleModal,
   openModal,
   onPhotoClick,
   toggleFavourite,
@@ -24,7 +23,6 @@ const HomeRoute = ({
         photos={photos}
         toggleFavourite={toggleFavourite}
         favouritePhotos={favouritePhotos}
-        // toggleModal={toggleModal}
         openModal={openModal}
         onPhotoClick={onPhotoClick}
       />

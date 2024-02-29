@@ -6,22 +6,14 @@ const PhotoListItem = ({
   photo,
   toggleFavourite,
   favouritePhotos,
-  // toggleModal,
   openModal,
   onPhotoClick 
 }) => {
   
   const handlePhotoClick = () => {
-    // console.log("toggleModal function:", toggleModal); // Debugging line
-
-    // console.log("Before calling toggleModal:", toggleModal);
-    // toggleModal();
-    // console.log("After calling toggleModal:", toggleModal);
-    // onPhotoClick(photo);
-
     openModal(); // Open the modal
     onPhotoClick(photo); // Pass the photo details to the parent component
- };
+  };
   
   return (
     <div className="photo-list__item" onClick={handlePhotoClick}>
