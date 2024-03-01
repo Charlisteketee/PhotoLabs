@@ -11,6 +11,7 @@ const initialState = {
   favouritePhotosCount: 0,
   photoData: [],
   topicData: [],
+  error: null,
 };
 
 // Define the actions
@@ -23,6 +24,7 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
+  SET_ERROR: 'SET_ERROR',
 };
 
 // Implement the reducer function
@@ -71,6 +73,11 @@ function reducer(state, action) {
         ...state,
         isModalOpen: false,
       };
+    case ACTIONS.SET_ERROR:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
  }
@@ -111,7 +118,10 @@ const useApplicationData = () => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData: photoResponse.data } });
         dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topicData: topicResponse.data } });
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        dispatch({ type: ACTIONS.SET_ERROR, payload: { error: 'An error occurred while fetching data.' } });
+      });
   }, []); // Empty dependency array ensures this runs once on mount
   
   return {
