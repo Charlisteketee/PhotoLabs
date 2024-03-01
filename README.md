@@ -1,7 +1,18 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
-
 # Photolabs
+
+## Description
+
+PhotoLabs is a React-based single-page application (SPA) that allows users to view and like photos.
+
+## Screenshots
+
+Full screen:
+
+![Screenshot of the full screen.](https://github.com/Charlisteketee/PhotoLabs/blob/main/frontend/docs/PhotoLabs-fullScreen.png?raw=true)
+
+Selected Photo:
+
+![Screenshot of a selected photo.](https://github.com/Charlisteketee/PhotoLabs/blob/main/frontend/docs/PhotoLabs-selectedPhoto.png?raw=true)
 
 ## Setup
 
