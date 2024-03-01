@@ -40,7 +40,6 @@ const similarPhotosArray = Object.values(similarPhotos);
           favouritePhotosCount={favouritePhotosCount}
           favouritePhotos={favouritePhotos}
         />
-        
       </div>
     </div>
   )

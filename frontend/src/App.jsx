@@ -15,18 +15,21 @@ const App = () => {
       favouritePhotosCount,
       photoData,
       topicData,
+      error,
     },
     actions: {
       openModal,
       closeModal,
       handlePhotoClick, // used when user selects a photo
       toggleFavourite, // sets the favourite photos
+      handleTopicClick,
     },
  } = useApplicationData(); // Use the hook
 
 
  return (
     <div className="App">
+      {error && <div className="error-message">{error}</div>} {/* Display error message */}
       <HomeRoute
         photos={photoData}
         topics={topicData}
@@ -35,6 +38,7 @@ const App = () => {
         toggleFavourite={toggleFavourite}
         favouritePhotosCount={favouritePhotosCount}
         favouritePhotos={favouritePhotos}
+        handleTopicClick={handleTopicClick}
       />
       {isModalOpen && <PhotoDetailsModal
         closeModal={closeModal}

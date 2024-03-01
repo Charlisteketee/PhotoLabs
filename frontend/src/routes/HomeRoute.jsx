@@ -10,7 +10,8 @@ const HomeRoute = ({
   onPhotoClick,
   toggleFavourite,
   favouritePhotosCount,
-  favouritePhotos
+  favouritePhotos,
+  handleTopicClick
 }) => {
 
   return (
@@ -18,6 +19,7 @@ const HomeRoute = ({
       <TopNavigation
         topics={topics}
         favouritePhotosCount={favouritePhotosCount}
+        handleTopicClick={handleTopicClick}
       />
       <PhotoList
         photos={photos}

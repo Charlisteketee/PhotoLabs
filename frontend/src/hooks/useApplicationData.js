@@ -6,6 +6,7 @@ import axios from 'axios';
 const initialState = {
   isModalOpen: false,
   selectedPhoto: null,
+  selectedTopic: null,
   similarPhotos: [],
   favouritePhotos: [],
   favouritePhotosCount: 0,
@@ -21,6 +22,7 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
@@ -57,6 +59,11 @@ function reducer(state, action) {
         ...state,
         selectedPhoto: action.payload.photo,
         similarPhotos: action.payload.photo.similar_photos,
+      };
+    case ACTIONS.SET_SELECTED_TOPIC:
+      return {
+        ...state,
+        selectedTopic: action.payload.topic,
       };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {
@@ -107,6 +114,25 @@ const useApplicationData = () => {
     }
   };
 
+  const fetchPhotosByTopic = () => {
+    console.log("State: selected topic:", state.selectedTopic);
+    if (state.selectedTopic) {
+      axios.get(`http://localhost:8001/api/topics/photos/${state.selectedTopic}`)
+        .then(response => {
+          dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData: response.data } });
+        })
+        .catch(error => {
+          console.error('Error fetching photos by topic:', error);
+          dispatch({ type: ACTIONS.SET_ERROR, payload: { error: 'An error occurred while fetching photos.' } });
+        });
+    }
+  };
+
+  const handleTopicClick = (topicId) => {
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: { topic: topicId } });
+    fetchPhotosByTopic(); // Fetch photos for the selected topic
+   };
+
   useEffect(() => {
     const photoPromise = axios.get('http://localhost:8001/api/photos')
     const topicPromise = axios.get('http://localhost:8001/api/topics')
@@ -131,6 +157,7 @@ const useApplicationData = () => {
       closeModal,
       handlePhotoClick,
       toggleFavourite,
+      handleTopicClick,
     },
   };
 };

@@ -4,11 +4,11 @@ import "../styles/TopicList.scss";
 
 
 
-const TopicList = (props) => {
+const TopicList = ({ topics, handleTopicClick }) => {
   return (
     <div className="top-nav-bar__topic-list">
-      {props.topics.map(topic => (
-        <TopicListItem key={topic.id} topic={topic} />
+      {topics.map(topic => (
+        <TopicListItem key={topic.id} topic={topic} onTopicClick={handleTopicClick}/>
       ))}
     </div>
   );
