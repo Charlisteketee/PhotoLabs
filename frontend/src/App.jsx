@@ -20,11 +20,11 @@ const App = () => {
     actions: {
       openModal,
       closeModal,
-      handlePhotoClick, // used when user selects a photo
-      toggleFavourite, // sets the favourite photos
+      handlePhotoClick,
+      toggleFavourite,
       handleTopicClick,
     },
- } = useApplicationData(); // Use the hook
+ } = useApplicationData();
 
 
  return (

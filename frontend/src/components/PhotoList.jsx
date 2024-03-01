@@ -9,11 +9,12 @@ const PhotoList = ({
   favouritePhotos,
   openModal,
   onPhotoClick,
+  isModalOpen,
 }) => {
 
   return (
     <ul className="photo-list">
-      {/* Map over mock photos and render PhotoList components */}
+      {/* Map over photos and render PhotoList components */}
       {photos.map(photo => (
         <PhotoListItem
           key={photo.id}
@@ -22,6 +23,7 @@ const PhotoList = ({
           favouritePhotos={favouritePhotos}
           openModal={openModal}
           onPhotoClick={onPhotoClick}
+          isModalOpen={isModalOpen}
         />
     ))}
     </ul>

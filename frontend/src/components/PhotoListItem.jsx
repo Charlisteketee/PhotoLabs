@@ -7,11 +7,14 @@ const PhotoListItem = ({
   toggleFavourite,
   favouritePhotos,
   openModal,
-  onPhotoClick 
+  onPhotoClick,
+  isModalOpen,
 }) => {
   
   const handlePhotoClick = () => {
-    openModal(); // Open the modal
+    if (!isModalOpen) { // Only open the modal if it's not already open
+      openModal();
+    }
     onPhotoClick(photo); // Pass the photo details to the parent component
   };
   

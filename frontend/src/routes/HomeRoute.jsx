@@ -11,7 +11,8 @@ const HomeRoute = ({
   toggleFavourite,
   favouritePhotosCount,
   favouritePhotos,
-  handleTopicClick
+  handleTopicClick,
+  isModalOpen,
 }) => {
 
   return (
@@ -27,6 +28,7 @@ const HomeRoute = ({
         favouritePhotos={favouritePhotos}
         openModal={openModal}
         onPhotoClick={onPhotoClick}
+        isModalOpen={isModalOpen}
       />
     </div>
   );

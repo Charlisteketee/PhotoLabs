@@ -11,7 +11,6 @@ function PhotoFavButton({
  const isSelected = favouritePhotos.includes(photoId);
 
  const handleClick = useCallback(() => {
-    // Call the toggleFavourite function passed as a prop
     toggleFavourite(photoId);
  }, [toggleFavourite, photoId]);
 

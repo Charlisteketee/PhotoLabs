@@ -11,6 +11,8 @@ const PhotoDetailsModal = ({
   toggleFavourite,
   favouritePhotosCount,
   favouritePhotos,
+  openModal,
+  isModalOpen,
 }) => {
 
   // Convert similar_photos object to an array
@@ -39,6 +41,8 @@ const similarPhotosArray = Object.values(similarPhotos);
           toggleFavourite={toggleFavourite}
           favouritePhotosCount={favouritePhotosCount}
           favouritePhotos={favouritePhotos}
+          isModalOpen={isModalOpen}
+          openModal={openModal}
         />
       </div>
     </div>
