@@ -16,6 +16,7 @@ const App = () => {
       photoData,
       topicData,
       error,
+      darkMode,
     },
     actions: {
       openModal,
@@ -23,12 +24,13 @@ const App = () => {
       handlePhotoClick,
       toggleFavourite,
       handleTopicClick,
+      toggleDarkMode,
     },
  } = useApplicationData();
 
 
  return (
-    <div className="App">
+    <div className={`App ${darkMode ? 'dark' : ''}`}>
       {error && <div className="error-message">{error}</div>} {/* Display error message */}
       <HomeRoute
         photos={photoData}
@@ -40,6 +42,8 @@ const App = () => {
         favouritePhotos={favouritePhotos}
         handleTopicClick={handleTopicClick}
         isModalOpen={isModalOpen}
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
       />
       {isModalOpen && <PhotoDetailsModal
         closeModal={closeModal}

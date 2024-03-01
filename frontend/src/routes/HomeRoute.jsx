@@ -12,6 +12,8 @@ const HomeRoute = ({
   favouritePhotosCount,
   favouritePhotos,
   handleTopicClick,
+  darkMode,
+  toggleDarkMode,
 }) => {
 
   return (
@@ -20,6 +22,8 @@ const HomeRoute = ({
         topics={topics}
         favouritePhotosCount={favouritePhotosCount}
         handleTopicClick={handleTopicClick}
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
       />
       <PhotoList
         photos={photos}

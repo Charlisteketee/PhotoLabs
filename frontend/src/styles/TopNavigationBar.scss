@@ -18,3 +18,8 @@
   text-underline-position: auto;
   margin-left: 24px;
 }
+
+/* make the logo text white in dark mode */
+.dark .top-nav-bar__logo {
+  color: white;
+}

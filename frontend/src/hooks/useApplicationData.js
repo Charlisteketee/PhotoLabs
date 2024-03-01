@@ -12,6 +12,7 @@ const initialState = {
   photoData: [],
   topicData: [],
   error: null,
+  darkMode: false,
 };
 
 // Define the actions
@@ -26,6 +27,7 @@ export const ACTIONS = {
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
   SET_ERROR: 'SET_ERROR',
+  TOGGLE_DARK_MODE: 'TOGGLE_DARK_MODE',
 };
 
 // Implement the reducer function
@@ -86,6 +88,11 @@ function reducer(state, action) {
         ...state,
         error: action.payload.error,
       };
+    case ACTIONS.TOGGLE_DARK_MODE:
+      return {
+        ...state,
+        darkMode: !state.darkMode,
+      };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
  }
@@ -132,7 +139,11 @@ const useApplicationData = () => {
   const handleTopicClick = (topicId) => {
     dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: { topic: topicId } });
     fetchPhotosByTopic(); // Fetch photos for the selected topic
-   };
+  };
+
+  const toggleDarkMode = () => {
+    dispatch({ type: ACTIONS.TOGGLE_DARK_MODE });
+  };
 
   useEffect(() => {
     const photoPromise = axios.get('http://localhost:8001/api/photos')
@@ -159,6 +170,7 @@ const useApplicationData = () => {
       handlePhotoClick,
       toggleFavourite,
       handleTopicClick,
+      toggleDarkMode,
     },
   };
 };
