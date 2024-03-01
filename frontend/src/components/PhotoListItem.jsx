@@ -6,16 +6,12 @@ const PhotoListItem = ({
   photo,
   toggleFavourite,
   favouritePhotos,
-  openModal,
-  onPhotoClick,
-  isModalOpen,
+  handlePhotoClick,
 }) => {
   
-  const handlePhotoClick = () => {
-    if (!isModalOpen) { // Only open the modal if it's not already open
-      openModal();
-    }
-    onPhotoClick(photo); // Pass the photo details to the parent component
+  const onPhotoClick = () => {
+    console.log(photo);
+    handlePhotoClick(photo); // Pass the photo details to the parent component
   };
   
   return (
@@ -25,7 +21,7 @@ const PhotoListItem = ({
         favouritePhotos={favouritePhotos}
         toggleFavourite={toggleFavourite}
       />
-      <img src={photo.urls.regular} onClick={handlePhotoClick}
+      <img src={photo.urls.regular} onClick={onPhotoClick}
         alt={`Photo id: ${photo.id}`}
         className="photo-list__image"
       />

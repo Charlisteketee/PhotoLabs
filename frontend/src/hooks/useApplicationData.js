@@ -54,10 +54,12 @@ function reducer(state, action) {
         topicData: action.payload.topicData,
       };
     case ACTIONS.SELECT_PHOTO:
+      const photo = state.photoData.find((photo) => action.payload.photo.id === photo.id);
       return {
         ...state,
-        selectedPhoto: action.payload.photo,
-        similarPhotos: action.payload.photo.similar_photos,
+        isModalOpen: true,
+        selectedPhoto: photo,
+        similarPhotos: photo.similar_photos,
       };
     case ACTIONS.SET_SELECTED_TOPIC:
       return {

@@ -34,11 +34,12 @@ const App = () => {
         photos={photoData}
         topics={topicData}
         openModal={openModal}
-        onPhotoClick={handlePhotoClick}
+        handlePhotoClick={handlePhotoClick}
         toggleFavourite={toggleFavourite}
         favouritePhotosCount={favouritePhotosCount}
         favouritePhotos={favouritePhotos}
         handleTopicClick={handleTopicClick}
+        isModalOpen={isModalOpen}
       />
       {isModalOpen && <PhotoDetailsModal
         closeModal={closeModal}
@@ -47,6 +48,7 @@ const App = () => {
         toggleFavourite={toggleFavourite}
         favouritePhotosCount={favouritePhotosCount}
         favouritePhotos={favouritePhotos}
+        handlePhotoClick={handlePhotoClick}
       />}
     </div>
  );

@@ -13,10 +13,8 @@ const PhotoDetailsModal = ({
   favouritePhotos,
   openModal,
   isModalOpen,
+  handlePhotoClick
 }) => {
-
-  // Convert similar_photos object to an array
-const similarPhotosArray = Object.values(similarPhotos);
 
   return (
     <div className="photo-details-modal">
@@ -28,8 +26,8 @@ const similarPhotosArray = Object.values(similarPhotos);
       <img src={photo.urls.regular} alt={`Photo id: ${photo.id}`} className="photo-details-modal__image" />
       
       {/* Display header */}
-      <div className="photo-details-modal__header">
-        <img src={photo.user.profile} alt={"Profile photo"} className="photo-list__user-profile" />
+      <div className="photo-details-modal__photographer-details">
+        <img src={photo.user.profile} alt={`${photo.user.name}'s profile photo`} className="photo-list__user-profile" />
         <div className="photo-list__user-info">{photo.user.name}</div>
         <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
       </div>
@@ -37,12 +35,13 @@ const similarPhotosArray = Object.values(similarPhotos);
       {/* Display similar photos */}
       <div className="photo-details-modal__images">
         <PhotoList
-          photos={similarPhotosArray}
+          photos={similarPhotos}
           toggleFavourite={toggleFavourite}
           favouritePhotosCount={favouritePhotosCount}
           favouritePhotos={favouritePhotos}
           isModalOpen={isModalOpen}
           openModal={openModal}
+          handlePhotoClick={handlePhotoClick}
         />
       </div>
     </div>

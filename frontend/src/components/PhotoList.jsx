@@ -8,21 +8,22 @@ const PhotoList = ({
   toggleFavourite,
   favouritePhotos,
   openModal,
-  onPhotoClick,
+  handlePhotoClick,
   isModalOpen,
 }) => {
+
 
   return (
     <ul className="photo-list">
       {/* Map over photos and render PhotoList components */}
-      {photos.map(photo => (
+      {photos && photos.map(photo => (
         <PhotoListItem
           key={photo.id}
           photo={photo}
           toggleFavourite={toggleFavourite}
           favouritePhotos={favouritePhotos}
           openModal={openModal}
-          onPhotoClick={onPhotoClick}
+          handlePhotoClick={handlePhotoClick}
           isModalOpen={isModalOpen}
         />
     ))}
