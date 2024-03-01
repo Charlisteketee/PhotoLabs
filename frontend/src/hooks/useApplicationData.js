@@ -1,5 +1,6 @@
 // hooks/useApplicationData.js
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
+import axios from 'axios';
 
 // Define the initial state
 const initialState = {
@@ -8,6 +9,8 @@ const initialState = {
   similarPhotos: [],
   favouritePhotos: [],
   favouritePhotosCount: 0,
+  photoData: [],
+  topicData: [],
 };
 
 // Define the actions
@@ -15,6 +18,7 @@ export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   OPEN_MODAL: 'OPEN_MODAL',
@@ -39,8 +43,12 @@ function reducer(state, action) {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        selectedPhoto: action.payload.photo,
-        similarPhotos: action.payload.photo.similar_photos,
+        photoData: action.payload.photoData,
+      };
+    case ACTIONS.SET_TOPIC_DATA:
+      return {
+        ...state,
+        topicData: action.payload.topicData,
       };
     case ACTIONS.SELECT_PHOTO:
       return {
@@ -92,6 +100,20 @@ const useApplicationData = () => {
     }
   };
 
+  useEffect(() => {
+    const photoPromise = axios.get('http://localhost:8001/api/photos')
+    const topicPromise = axios.get('http://localhost:8001/api/topics')
+
+    // Use Promise.all to wait for both requests to complete
+    Promise.all([photoPromise, topicPromise])
+      .then(([photoResponse, topicResponse]) => {
+        // Dispatch actions to set photo and topic data in the state
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData: photoResponse.data } });
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topicData: topicResponse.data } });
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []); // Empty dependency array ensures this runs once on mount
+  
   return {
     state,
     actions: {

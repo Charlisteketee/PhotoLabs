@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
-import photos from 'mocks/photos';
-import topics from 'mocks/topics';
 import useApplicationData from 'hooks/useApplicationData';
 
 
@@ -15,9 +13,10 @@ const App = () => {
       similarPhotos,
       favouritePhotos,
       favouritePhotosCount,
+      photoData,
+      topicData,
     },
     actions: {
-      // toggleModal, // used to open and close the modal
       openModal,
       closeModal,
       handlePhotoClick, // used when user selects a photo
@@ -29,8 +28,8 @@ const App = () => {
  return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={photoData}
+        topics={topicData}
         openModal={openModal}
         onPhotoClick={handlePhotoClick}
         toggleFavourite={toggleFavourite}
