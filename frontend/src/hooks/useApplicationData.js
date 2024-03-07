@@ -125,7 +125,7 @@ const useApplicationData = () => {
   const fetchPhotosByTopic = () => {
     console.log("State: selected topic:", state.selectedTopic);
     if (state.selectedTopic) {
-      axios.get(`http://localhost:8001/api/topics/photos/${state.selectedTopic}`)
+      axios.get(`/api/topics/photos/${state.selectedTopic}`)
         .then(response => {
           dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData: response.data } });
         })
@@ -146,8 +146,8 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    const photoPromise = axios.get('http://localhost:8001/api/photos')
-    const topicPromise = axios.get('http://localhost:8001/api/topics')
+    const photoPromise = axios.get('/api/photos')
+    const topicPromise = axios.get('/api/topics')
 
     // Use Promise.all to wait for both requests to complete
     Promise.all([photoPromise, topicPromise])
